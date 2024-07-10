@@ -12,7 +12,7 @@ export class GameService {
     return { player1: this.player1, player2: this.player2 };
   }
 
-  public playRound(attackerName: string): { message: string, attacker: Player, defender: Player, defenderHealth: number } {
+  public playRound(attackerName: string): { message: string, attacker: Player, defender: Player, attackPower: number, defencePower: number, defenderHealth: number } {
     const attacker = this.player1.name === attackerName ? this.player1 : this.player2;
     const defender = attacker === this.player1 ? this.player2 : this.player1;
 
@@ -25,12 +25,18 @@ export class GameService {
     const damageDealt = attackDamage - defendDamage;
     if (damageDealt > 0) {
       defender.health -= damageDealt;
+      if (defender.health <= 0) {
+        defender.health = 0;
+        defender.isAlive = false;
+      }
     }
 
     return {
       message: 'Round played',
       attacker,
       defender,
+      attackPower: attackDamage,
+      defencePower: defendDamage,
       defenderHealth: defender.health,
     };
   }

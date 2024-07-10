@@ -3,5 +3,6 @@ export interface IPlayer {
     strength: number;
     attack: number;
     name: string;
+    isAlive: boolean;
   }
   

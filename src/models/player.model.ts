@@ -3,7 +3,8 @@ export class Player {
       public health: number,
       public strength: number,
       public attack: number,
-      public name: string
+      public name: string,
+      public isAlive: boolean = true
     ) {}
   }
   

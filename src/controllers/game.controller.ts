@@ -23,7 +23,11 @@ export class GameController {
     res.status(StatusCodes.OK).json({ 
         message: result.message,
         data: {
-            data: [result.attacker, result.defender, result.defenderHealth],
+            data: [result.attacker, result.defender, 
+                {"attackPower": result.attackPower},
+                {"defencePower": result.defencePower},
+                {"defenderHealth": result.defenderHealth}
+            ],
         }
       });
   }
