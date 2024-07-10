@@ -30,6 +30,7 @@ This backend repository is developed using Node.js and the Express framework whi
 -   [Set-up](#set-up)
 -   [Run](#run)
 -   [Project Structure](#project-structure)
+-   [Testing API Endpoints](#testing-api-endpoints)
 
 
 
@@ -131,4 +132,41 @@ npx nodemon
 ```
 
 </details>
+
+## Testing API Endpoints
+
+### Initialize Game
+**Endpoint:** `POST /api/game/initialize`
+
+**Request Body:**
+```json
+{
+  "player1": {
+    "name": "Player1",
+    "health": 100,
+    "strength": 10,
+    "attack": 15
+  },
+  "player2": {
+    "name": "Player2",
+    "health": 100,
+    "strength": 12,
+    "attack": 12
+  }
+}
+```
+### Play Round
+
+**Endpoint:** `POST /api/game/play-round`
+
+**Request Body:**
+```json
+{
+  "attackerName": "Player1"
+}
+```
+
+### Get Game Status
+
+**Endpoint:** `GET /api/game/status`
 
