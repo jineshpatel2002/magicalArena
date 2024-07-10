@@ -1,6 +1,7 @@
 import { Player } from '../models/player.model';
 import { IPlayer } from '../interfaces/player.interface';
 import { diceRoller } from '../utils/diceRoller';
+import { logger } from "src/common/logger";
 
 export class GameService {
   private player1: Player;
@@ -9,6 +10,7 @@ export class GameService {
   public initializeGame(player1IFC: IPlayer, player2IFC: IPlayer): { player1: Player, player2: Player } {
     this.player1 = new Player(player1IFC.health, player1IFC.strength, player1IFC.attack, player1IFC.name);
     this.player2 = new Player(player2IFC.health, player2IFC.strength, player2IFC.attack, player2IFC.name);
+    logger.info('Game initialized with players: ', this.player1.name, this.player2.name);
     return { player1: this.player1, player2: this.player2 };
   }
 
@@ -31,6 +33,7 @@ export class GameService {
       }
     }
 
+    logger.info('Round played: ', attacker.name, 'attacked', defender.name, 'with', attackDamage, 'attack power and', defendDamage, 'defence power. Defender health:', defender.health);
     return {
       message: 'Round played',
       attacker,
@@ -42,6 +45,7 @@ export class GameService {
   }
 
   public getStatus(): { player1: Player, player2: Player } {
+    logger.info('Game status requested');
     return { player1: this.player1, player2: this.player2 };
   }
 }
