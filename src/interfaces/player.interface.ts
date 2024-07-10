@@ -1,4 +1,4 @@
-export interface Player {
+export interface IPlayer {
     health: number;
     strength: number;
     attack: number;
